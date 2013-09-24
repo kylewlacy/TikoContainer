@@ -39,7 +39,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Tiko\Tiko.csproj">
-      <Project>{542F5FA5-7435-4466-A776-ECFE06CEF0C2}</Project>
+      <Project>{E4F6D527-F8C3-4B38-9D55-F93B47B7E12D}</Project>
       <Name>Tiko</Name>
     </ProjectReference>
   </ItemGroup>
