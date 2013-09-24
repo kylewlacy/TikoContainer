@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Source\UnitTests\UnitTests.csproj", "{32231D9E-EAF6-4607-82B1-2BFE20081E5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiko", "Tiko\Tiko.csproj", "{E4F6D527-F8C3-4B38-9D55-F93B47B7E12D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiko", "Source\Tiko\Tiko.csproj", "{E4F6D527-F8C3-4B38-9D55-F93B47B7E12D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{32231D9E-EAF6-4607-82B1-2BFE20081E5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		{E4F6D527-F8C3-4B38-9D55-F93B47B7E12D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Source\UnitTests\UnitTests.csproj
+		StartupItem = Tiko\Tiko.csproj
 	EndGlobalSection
 EndGlobal
