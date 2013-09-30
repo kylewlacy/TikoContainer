@@ -170,6 +170,22 @@ namespace Tiko
 		}
 	}
 
+	[AttributeUsage (AttributeTargets.Assembly | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
+	public sealed class UsesAttribute : Attribute
+	{
+		public Assembly Assembly;
+
+		public UsesAttribute (Assembly assembly)
+		{
+			Assembly = assembly;
+		}
+
+		public UsesAttribute (Type typeFromAssembly)
+		{
+			Assembly = typeFromAssembly.Assembly;
+		}
+	}
+
 	[AttributeUsage (AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
 	public sealed class DependencyAttribute : Attribute
 	{
