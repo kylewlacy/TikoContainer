@@ -180,9 +180,8 @@ namespace Tiko
 			Assembly = assembly;
 		}
 
-		public UsesAttribute (Type typeFromAssembly)
+		public UsesAttribute (Type typeFromAssembly) : this(typeFromAssembly.Assembly)
 		{
-			Assembly = typeFromAssembly.Assembly;
 		}
 	}
 
