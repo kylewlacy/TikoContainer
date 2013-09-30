@@ -72,7 +72,7 @@ namespace Tiko
 			T instance;
 			object resolvedObject;
 			if (ResolveObject (typeof(T), out resolvedObject) || ResolveAttribute (typeof(T), out resolvedObject))
- {//			if(ResolveObject(typeof(T), out resolvedObject))
+			{
 				instance = (T)resolvedObject;
 			} else {
 				instance = Activator.CreateInstance<T> ();
@@ -119,6 +119,9 @@ namespace Tiko
 		{
 			Type resolvedType = null;
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
+				// Instantiates `UsesAttribute`s, which forces used types to load at runtime
+				assembly.GetCustomAttributes(typeof(UsesAttribute), true);
+
 				try {
 					foreach (Type type in assembly.GetTypes()) {
 						var resolvesAttributes = type.GetCustomAttributes (typeof(ResolvesAttribute), false).Cast<ResolvesAttribute> ();
