@@ -162,6 +162,27 @@ namespace Tiko
 		}
 	}
 
+	/// <summary>
+	/// Indicates that a class can be used to resolve a type.
+	/// <remarks>Using <see cref="Tiko.TikoContainer.Register"/> to register a type takes priority; this attribute is used as a fallback.</remarks>
+	/// <example>
+	/// <code>
+	/// interface IStorageContainer {
+	/// 	void SaveToStorage(string data);
+	/// }
+	/// 
+	/// [Resolves(typeof(IStorageContainer))]
+	/// class FileStorage : IStorageContainer {
+	/// 	void SaveToStorage(string data) {
+	/// 		using(FileStream stream = new FileStream("somefile.txt")
+	/// 			stream.Write(data);
+	/// 	}
+	/// }
+	/// 
+	/// // TikoContainer.Resolve<IStorageContainer>() will now return an instance of FileStorage
+	/// </code>
+	/// </example>
+	/// </summary>
 	[AttributeUsage (AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
 	public sealed class ResolvesAttribute : Attribute
 	{
@@ -173,16 +194,37 @@ namespace Tiko
 		}
 	}
 
+	/// <summary>
+	/// Indicates that a class or assembly depends on an external assembly
+	/// <remarks>This should be used when using <see cref="Tiko.TikoContainer.Resolve"/> fails to find a type resolved with <see cref="ResolvesAttribute"/>.</remarks>
+	/// </summary>
 	[AttributeUsage (AttributeTargets.Assembly | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
 	public sealed class UsesAttribute : Attribute
 	{
 		public Assembly Assembly;
 
+		/// <summary>
+		/// Indicates that the target depends on the given assembly.
+		/// </summary>
+		/// <param name="assembly">The dependent assembly.</param>
+		/// <seealso cref="UsesAttribute(Type)"/>
 		public UsesAttribute (Assembly assembly)
 		{
 			Assembly = assembly;
 		}
 
+		/// <summary>
+		/// Indicates that the target depends on the assembly of the given type.
+		/// </summary>
+		/// <param name="typeFromAssembly">A type from the dependent assembly.</param>
+		/// <example>
+		/// <code>
+		/// [Uses(typeof(Implementation.SomeClass))]
+		/// class Consumer {
+		/// 	// ...
+		/// }
+		/// </code>
+		/// </example>
 		public UsesAttribute (Type typeFromAssembly) : this(typeFromAssembly.Assembly)
 		{
 		}
